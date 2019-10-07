@@ -16,7 +16,7 @@ class Recipes extends Component {
       index: 0,
       editing: false,
       newTitle: "",
-      newIngredient: "",
+      newIngredient: [],
       newStep: ""
     };
   }
@@ -57,10 +57,10 @@ class Recipes extends Component {
 
   save = id => {
     console.log(id);
-
+    const ingredientsArray = this.state.newIngredient.split(", ");
     let newRecipe = {
       title: this.state.newTitle,
-      ingredients: this.state.newIngredient,
+      ingredients: ingredientsArray,
       steps: this.state.newStep
     };
     axios
@@ -87,14 +87,20 @@ class Recipes extends Component {
     }
   };
   render() {
-    console.log(this.state.recipes);
+    console.log(this.state.newIngredient);
     const { recipes, index } = this.state;
     const { editing } = this.state;
     if (!this.state.editing) {
       return (
         <div className="container">
-          <div className="display-c" onClick={() => this.edit()}>
+          <div className="display-c">
             <div className="inside-title">{recipes[index].title}</div>
+            <img
+              id="gif"
+              src="https://i.gifer.com/3Gd5.gif"
+              height="170"
+              width="250"
+            ></img>
             <ul>
               <li>{recipes[index].ingredients[0]}</li>
               <li>{recipes[index].ingredients[1]}</li>
@@ -102,8 +108,6 @@ class Recipes extends Component {
               <li>{recipes[index].ingredients[3]}</li>
             </ul>
             <div className="inside">{recipes[index].steps}</div>
-
-            {/* <div className="inside">{recipes[index].url}</div> */}
           </div>
           <div className="button-section">
             <button

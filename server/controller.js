@@ -53,14 +53,12 @@ module.exports = {
     res.status(200).send(recipes);
   },
   editRecipe(req, res) {
-    // console.log(req.body);
     const { id, newRecipe } = req.body;
-    // console.log(typeof id);
 
     let recipeIndex = recipes.findIndex(recipe => recipe.id === +id);
     recipes[recipeIndex] = { ...newRecipe, id: id };
 
-    // console.log(recipes);
+    console.log(recipes);
     res.status(200).send(recipes);
   },
   deleteRecipe(req, res) {

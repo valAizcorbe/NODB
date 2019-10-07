@@ -14,17 +14,14 @@ class Add extends Component {
       steps: [],
       newIngredient: "",
       newStep: ""
-      //   url: "",
-      //   editing: false,
-      //   editInput: props.element
     };
   }
   addRecipe = () => {
     const addOn = {
       title: this.state.title,
       ingredients: this.state.ingredients,
-      steps: this.state.steps,
-      url: this.state.url
+      steps: this.state.steps
+      // url: this.state.url
     };
     axios.post("/api/recipe", { addOn }).then(res =>
       this.setState({
